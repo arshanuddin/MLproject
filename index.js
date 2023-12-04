@@ -1,6 +1,6 @@
 async function runExample() {
 
-    var x = new Float32Array( 1, 11 )
+    var x = new Float32Array( 1, 19 )
 
     var x = [];
 
@@ -15,11 +15,19 @@ async function runExample() {
      x[8] = document.getElementById('box9').value;
      x[9] = document.getElementById('box10').value;
      x[10] = document.getElementById('box11').value;
+     x[11] = document.getElementById('box12').value;
+     x[12] = document.getElementById('box13').value;
+     x[13] = document.getElementById('box14').value;
+     x[14] = document.getElementById('box15').value;
+     x[15] = document.getElementById('box16').value;
+     x[16] = document.getElementById('box17').value;
+     x[17] = document.getElementById('box18').value;
+     x[18] = document.getElementById('box19').value;
 
-    let tensorX = new ort.Tensor('float32', x, [1, 11] );
+    let tensorX = new ort.Tensor('float32', x, [1, 19] );
     let feeds = {float_input: tensorX};
 
-    let session = await ort.InferenceSession.create('xgboost_WineQuality_ort.onnx');
+    let session = await ort.InferenceSession.create('xgboost_house_ort.onnx');
     
    let result = await session.run(feeds);
    let outputData = result.variable.data;
@@ -31,7 +39,7 @@ async function runExample() {
   predictions.innerHTML = ` <hr> Got an output tensor with values: <br/>
    <table>
      <tr>
-       <td>  Rating of Wine Quality  </td>
+       <td>  best house prediction  </td>
        <td id="td0">  ${outputData}  </td>
      </tr>
   </table>`;
